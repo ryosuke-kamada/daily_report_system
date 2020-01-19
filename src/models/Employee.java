@@ -11,39 +11,40 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@Table(name ="employees")
+@Table(name = "employees")
 @NamedQueries({
     @NamedQuery(
-            name="getAllEmployees",
-            query="SELECT e FROM Employee AS e ORDER BY e.id DESC"
+            name = "getAllEmployees",
+            query = "SELECT e FROM Employee AS e ORDER BY e.id DESC"
             ),
     @NamedQuery(
-            name ="getEmployesCount",
+            name = "getEmployeesCount",
             query = "SELECT COUNT(e) FROM Employee AS e"
             ),
     @NamedQuery(
-            name ="checkRegisteredCode",
-            query = "SELECT COUNT(e) FROM Employee AS e WHERE e.code= :code"
+            name = "checkRegisteredCode",
+            query = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"
             ),
     @NamedQuery(
-            name = "checkloginCodeAndPassword",
-            query = "SELECT e FROM Employee AS e WHERE e.delete_flag =0 AND e.code= :code AND e.password= :pass"
+            name = "checkLoginCodeAndPassword",
+            query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"
             )
 })
+
 @Entity
-public class Employee {
+public class Employee{
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="id")
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name ="code",nullable =false,unique=true)
+    @Column(name ="code",nullable=false,unique=true)
     private String code;
 
-    @Column(name ="name",nullable=false)
+    @Column(name="name",nullable=false)
     private String name;
 
-    @Column(name ="passwors",length=64,nullable=false)
+    @Column(name="password",length=64,nullable=false)
     private String password;
 
     @Column(name="admin_flag",nullable=false)
@@ -123,9 +124,5 @@ public class Employee {
     }
 
 
-
-
-
-
-
 }
+
