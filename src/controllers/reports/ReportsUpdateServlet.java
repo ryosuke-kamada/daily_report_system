@@ -47,16 +47,16 @@ public class ReportsUpdateServlet extends HttpServlet {
             r.setContent(request.getParameter("content"));
             r.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
-            List<String> errors=ReportValidator.validate(r);
-            if(errors.size()>0){
+            List<String> errors = ReportValidator.validate(r);
+            if(errors.size() > 0) {
                 em.close();
 
-                request.setAttribute("_tokne", request.getSession().getId());
+                request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("report", r);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/views/reports/edit.jsp");
-                rd.forward(request,response);
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/edit.jsp");
+                rd.forward(request, response);
 
 
             }else{
